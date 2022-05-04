@@ -98,16 +98,16 @@ disease_dict = {
     3 : 'ptsd'
 }
 
-adhd = pd.read_csv('../adhd.csv')
+adhd = pd.read_csv('../adhd.csv', sep='delimiter', header=None)
 adhd.dropna(inplace = True)
 
-depression = pd.read_csv('../Depression.csv')
+depression = pd.read_csv('../Depression.csv',sep='delimiter', header=None)
 depression.dropna(inplace = True)
 
-ocd = pd.read_csv('../OCD.csv')
+ocd = pd.read_csv('../OCD.csv',sep='delimiter', header=None)
 ocd.dropna(inplace = True)
 
-ptsd = pd.read_csv('../PTSD.csv')
+ptsd = pd.read_csv('../PTSD.csv',sep='delimiter', header=None)
 ptsd.dropna(inplace = True)
 
 adhd_body  = adhd['body']
