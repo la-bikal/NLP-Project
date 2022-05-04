@@ -1,6 +1,7 @@
 from transformers import BertModel
 from transformers import AutoTokenizer, AutoModel
 import torch
+from torchinfo import summary
 
 import pandas as pd
 # from Bio import SeqIO
@@ -158,7 +159,9 @@ class CustomBERTModel(torch.nn.Module):
 
 tokenizer = AutoTokenizer.from_pretrained("mental/mental-bert-base-uncased")
 model = CustomBERTModel() # You can pass the parameters if required to have more flexible model
-model.cuda() ## can be gpu
+# model.cuda() ## can be gpu
+
+print(model)
 
 criterion = torch.nn.CrossEntropyLoss() ## If required define your own criterion
 optimizer = torch.optim.Adam(filter(lambda p: p.requires_grad, model.parameters()))
