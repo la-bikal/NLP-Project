@@ -110,6 +110,12 @@ ocd.dropna(inplace = True)
 ptsd = pd.read_csv('../PTSD.csv',sep='delimiter', header=None)
 ptsd.dropna(inplace = True)
 
+print(adhd.head())
+
+print(ptsd.head())
+print(ocd.head())
+print(depression.head())
+
 adhd_body  = adhd['body']
 depression_body = depression['body']
 ocd_body = ocd['body']
