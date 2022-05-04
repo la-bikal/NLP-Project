@@ -152,13 +152,13 @@ class CustomBERTModel(torch.nn.Module):
                attention_mask=mask)
 
           # sequence_output has the following shape: (batch_size, sequence_length, 768)
-          linear1_output = self.linear1(sequence_output[:,0,:].view(-1,32)).cuda() ## extract the 1st token's embeddings
+          linear1_output = self.linear1(sequence_output[:,0,:].view(-1,32)) ## extract the 1st token's embeddings
 
           return linear1_output
 
 tokenizer = AutoTokenizer.from_pretrained("mental/mental-bert-base-uncased")
 model = CustomBERTModel() # You can pass the parameters if required to have more flexible model
-model.to(torch.device("cuda:0")) ## can be gpu
+model.cuda() ## can be gpu
 
 criterion = torch.nn.CrossEntropyLoss() ## If required define your own criterion
 optimizer = torch.optim.Adam(filter(lambda p: p.requires_grad, model.parameters()))
