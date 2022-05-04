@@ -147,9 +147,9 @@ X = list(dataset['body'])
 Y = list(dataset['label'])
 
 print('Preprocessing data ')
-X_ = [preprocess(clean_text(x)) for x in X[:1000]]
+X_ = [preprocess(clean_text(x)) for x in X]
 
-X_train, X_test, Y_train, Y_test = train_test_split(X_, Y[:1000], test_size = 0.1, random_state = 19720)
+X_train, X_test, Y_train, Y_test = train_test_split(X_, Y, test_size = 0.1, random_state = 19720)
 
 
 def set_seed(seed: int):
