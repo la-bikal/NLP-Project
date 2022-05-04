@@ -135,7 +135,7 @@ Y = list(dataset['label'])
 print('Preprocessing data ')
 X = [preprocess(clean_text(x)) for x in X]
 
-X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size = 0.1, random_state = 19720)
+X_train, X_test, Y_train, Y_test = train_test_split(X[:1000], Y[:1000], test_size = 0.1, random_state = 19720)
 
 tokenizer = AutoTokenizer.from_pretrained("mental/mental-bert-base-uncased")
 
