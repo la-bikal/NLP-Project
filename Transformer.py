@@ -170,8 +170,7 @@ for i in range(3):
     input_ids = encoding['input_ids']
     attention_mask = encoding['attention_mask']
     outputs = model(input_ids, attention_mask)
-    
-    outputs = F.log_softmax(outputs, dim=1)
+    targets = Y_train[:5]
     
     loss = criterion(outputs, targets)
     loss.backward()
