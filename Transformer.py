@@ -169,17 +169,17 @@ model = CustomBERTModel() # You can pass the parameters if required to have more
 criterion = torch.nn.CrossEntropyLoss() ## If required define your own criterion
 optimizer = torch.optim.Adam(filter(lambda p: p.requires_grad, model.parameters()))
 
-for i in range(3):
-    optimizer.zero_grad()   
-    encoding = tokenizer.batch_encode_plus(X_train[:120], return_tensors='pt', padding=True, truncation=True,max_length=50, add_special_tokens = True)
-    input_ids = encoding['input_ids']
-    attention_mask = encoding['attention_mask']
-    outputs = model(input_ids, attention_mask)
-    targets = to_categorical(Y_train[:120], 4)
-    
-    targets = torch.from_numpy(targets).long()
-    
-    loss = criterion(outputs, targets)
-    loss.backward()
-    optimizer.step()
+
+optimizer.zero_grad()   
+encoding = tokenizer.batch_encode_plus(X_train[:120], return_tensors='pt', padding=True, truncation=True,max_length=50, add_special_tokens = True)
+input_ids = encoding['input_ids']
+attention_mask = encoding['attention_mask']
+outputs = model(input_ids, attention_mask)
+targets = to_categorical(Y_train[:120], 4)
+
+targets = torch.from_numpy(targets).long()
+
+loss = criterion(outputs, targets)
+loss.backward()
+optimizer.step()
         
