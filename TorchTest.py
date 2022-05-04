@@ -147,9 +147,17 @@ X = list(dataset['body'])
 Y = list(dataset['label'])
 
 print('Preprocessing data ')
-X_ = [preprocess(clean_text(x)) for x in X]
+X = [preprocess(clean_text(x)) for x in X]
 
-X_train, X_test, Y_train, Y_test = train_test_split(X_, Y, test_size = 0.1, random_state = 19720)
+X_ = []
+Y_ = []
+
+for x,y in zip(X,Y):
+    if len(x.split()) > 0:
+        X_.append(x)
+        Y_.append(y)
+
+X_train, X_test, Y_train, Y_test = train_test_split(X_, Y_, test_size = 0.1, random_state = 19720)
 
 
 def set_seed(seed: int):
@@ -179,7 +187,7 @@ set_seed(1)
 # check text classification models here: https://huggingface.co/models?filter=text-classification
 model_name = "mental/mental-bert-base-uncased"
 # max sequence length for each document/sentence sample
-max_length = 512
+max_length = 256
 # load the tokenizer
 tokenizer = BertTokenizerFast.from_pretrained(model_name, do_lower_case=True)
 
@@ -222,12 +230,12 @@ training_args = TrainingArguments(
     num_train_epochs=3,              # total number of training epochs
     per_device_train_batch_size=8,  # batch size per device during training
     per_device_eval_batch_size=20,   # batch size for evaluation
-    warmup_steps=500,                # number of warmup steps for learning rate scheduler
+    warmup_steps=250,                # number of warmup steps for learning rate scheduler
     weight_decay=0.01,               # strength of weight decay
     load_best_model_at_end=True,     # load the best model when finished training (default metric is loss)
     # but you can specify `metric_for_best_model` argument to change to accuracy or other metric
     logging_steps=200,               # log & save weights each logging_steps
-    save_steps=200,
+    save_steps=400,
     evaluation_strategy="steps",     # evaluate each `logging_steps`
 )
 
