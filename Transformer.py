@@ -44,6 +44,11 @@ TEXT_CLEANING_RE = "@\S+|https?:\S+|http?:\S|[^A-Za-z0-9]+"
 stop_words = stopwords.words("english")
 stemmer = SnowballStemmer("english")
 
+
+def to_categorical(y, num_classes):
+    """ 1-hot encodes a tensor """
+    return np.eye(num_classes, dtype='uint8')[y]
+
 def preprocess(text, stem=False):
     # Remove link,user and special characters
     text = re.sub(TEXT_CLEANING_RE, ' ', str(text).lower()).strip()
@@ -170,7 +175,7 @@ for i in range(3):
     input_ids = encoding['input_ids']
     attention_mask = encoding['attention_mask']
     outputs = model(input_ids, attention_mask)
-    targets = Y_train[:5]
+    targets = to_categorical(Y_train[:5], 4)
     
     loss = criterion(outputs, targets)
     loss.backward()
