@@ -150,12 +150,12 @@ class CustomBERTModel(torch.nn.Module):
     def forward(self, ids, mask):
           sequence_output, pooled_output = self.bert(
                ids, 
-               attention_mask=mask)
+               attention_mask=mask).to_tuple()
             
-          print('Pooled Output:: ', type(pooled_output))
+          print('Pooled Output:: ', pooled_output)
 
           # sequence_output has the following shape: (batch_size, sequence_length, 768)
-          print('Sequenecec OUTPUT ---> ::::: ', type(sequence_output))
+          print('Sequenecec OUTPUT ---> ::::: ', sequence_output)
           
           linear1_output = self.linear1(sequence_output[:,0,:].view(-1,32)) ## extract the 1st token's embeddings
 
