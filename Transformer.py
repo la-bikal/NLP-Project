@@ -104,10 +104,10 @@ adhd.dropna(inplace = True)
 depression = pd.read_csv('../Depression')
 depression.dropna(inplace = True)
 
-ocd = pd.read_csv('../OCD',sep='delimiter')
+ocd = pd.read_csv('../OCD')
 ocd.dropna(inplace = True)
 
-ptsd = pd.read_csv('../PTSD',sep='delimiter')
+ptsd = pd.read_csv('../PTSD')
 ptsd.dropna(inplace = True)
 
 print(adhd.head())
