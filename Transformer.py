@@ -1,7 +1,7 @@
 from transformers import BertModel
 from transformers import AutoTokenizer, AutoModel
 import torch
-from torchinfo import summary
+
 
 import pandas as pd
 # from Bio import SeqIO
