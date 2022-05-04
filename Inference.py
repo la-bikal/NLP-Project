@@ -6,7 +6,7 @@ model_path = "MentalDiseases-bert-base-uncased"
 max_length = 512
 
 
-model = BertForSequenceClassification.from_pretrained(model_path, num_labels=4.to("cuda")
+model = BertForSequenceClassification.from_pretrained(model_path, num_labels=4).to("cuda")
 tokenizer = BertTokenizerFast.from_pretrained(model_path)
 
 def get_prediction(text):
