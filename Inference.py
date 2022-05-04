@@ -23,7 +23,7 @@ def get_prediction(text):
     # get output probabilities by doing softmax
     probs = outputs[0].softmax(1)
     # executing argmax function to get the candidate label
-    return target_names[probs.argmax()]
+    return target_names[probs.argmax().item()]
 
 # Example #1
 text = """
