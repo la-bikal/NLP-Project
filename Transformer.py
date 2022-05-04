@@ -171,11 +171,11 @@ optimizer = torch.optim.Adam(filter(lambda p: p.requires_grad, model.parameters(
 
 for i in range(3):
     optimizer.zero_grad()   
-    encoding = tokenizer.batch_encode_plus(X_train[:5], return_tensors='pt', padding=True, truncation=True,max_length=50, add_special_tokens = True)
+    encoding = tokenizer.batch_encode_plus(X_train[:120], return_tensors='pt', padding=True, truncation=True,max_length=50, add_special_tokens = True)
     input_ids = encoding['input_ids']
     attention_mask = encoding['attention_mask']
     outputs = model(input_ids, attention_mask)
-    targets = to_categorical(Y_train[:5], 4)
+    targets = to_categorical(Y_train[:120], 4)
     
     targets = torch.from_numpy(targets).long()
     
