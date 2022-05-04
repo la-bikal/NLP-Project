@@ -1,4 +1,4 @@
-from transformers import BertForSequenceClassification, BertTokenizerFast
+import transformers.BertForSequenceClassification, transformers.BertTokenizerFast
 from sklearn.model_selection import train_test_split
 from sklearn.datasets import fetch_20newsgroups
 
