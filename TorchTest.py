@@ -206,7 +206,7 @@ class DiseaseDataset(torch.utils.data.Dataset):
 train_dataset = DiseaseDataset(train_encodings, Y_train)
 valid_dataset = DiseaseDataset(valid_encodings, Y_test)
 # load the model and pass to CUDA
-model = BertForSequenceClassification.from_pretrained(model_name, num_labels=len(target_names)).to("cuda")
+model = BertForSequenceClassification.from_pretrained(model_name, num_labels=4).to("cuda")
 
 def compute_metrics(pred):
     labels = pred.label_ids
