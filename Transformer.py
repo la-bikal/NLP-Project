@@ -177,6 +177,8 @@ for i in range(3):
     outputs = model(input_ids, attention_mask)
     targets = to_categorical(Y_train[:5], 4)
     
+    targets = torch.from_numpy(targets).long()
+    
     loss = criterion(outputs, targets)
     loss.backward()
     optimizer.step()
