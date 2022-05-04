@@ -132,6 +132,7 @@ for idx, body in enumerate([adhd_body, depression_body, ocd_body, ptsd_body]):
 X = list(dataset['body'])
 Y = list(dataset['label'])
 
+print('Preprocessing data ')
 X = [preprocess(clean_text(x)) for x in X]
 
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size = 0.1, random_state = 19720)
@@ -165,6 +166,8 @@ optimizer = torch.optim.Adam(filter(lambda p: p.requires_grad, model.parameters(
 for i in range(3):
     optimizer.zero_grad()   
     encoding = tokenizer.batch_encode_plus(X_train[:5], return_tensors='pt', padding=True, truncation=True,max_length=50, add_special_tokens = True)
+    input_ids = encoding['input_ids']
+    attention_mask = encoding['attention_mask']
     outputs = model(input_ids, attention_mask=attention_mask)
     outputs = F.log_softmax(outputs, dim=1)
     input_ids = encoding['input_ids']
