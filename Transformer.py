@@ -152,7 +152,7 @@ class CustomBERTModel(torch.nn.Module):
                attention_mask=mask)
 
           # sequence_output has the following shape: (batch_size, sequence_length, 768)
-          linear1_output = self.linear1(sequence_output[:,0,:].view(-1,768)) ## extract the 1st token's embeddings
+          linear1_output = self.linear1(sequence_output[:,0,:].view(-1,32)).cuda() ## extract the 1st token's embeddings
 
           return linear1_output
 
